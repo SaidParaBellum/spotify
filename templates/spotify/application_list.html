@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Application List{% endblock title %}
+
+{% block content %}
+    <h2>Application List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Comment</th>
+                <th>Submitted At</th>
+                <th>Status</th>
+                {% if user.role == 'admin' %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in object_list %}
+            <tr>
+                <td>{{ application.user.username }}</td>
+                <td>{{ application.comment }}</td>
+                <td>{{ application.submitted_at }}</td>
+                <td>{{ application.get_status_display }}</td>
+                {% if user.role == 'admin' %}
+                <td><a href="{% url 'application_update' application.pk %}">Edit</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

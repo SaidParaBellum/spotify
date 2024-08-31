@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Профиль пользователя{% endblock title %}
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="{{ user.musician.image.url }}" alt="Profile Image" class="profile-image">
+        <h1>{{ user.name }}</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>Дата рождения: {{ user.date_of_birth }}</p>
+    </div>
+    <div class="profile-links">
+        <a href="{% url 'songs' %}" class="profile-link">Мои песни</a>
+        <a href="{% url 'artists' %}" class="profile-link">Исполнители</a>
+        <a href="{% url 'playlist' %}" class="profile-link">Мои плейлисты</a>
+    </div>
+</div>
+{% endblock content %}
+
+{% block style %}
+<style>
+    .profile-container {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .profile-header {
+        margin-bottom: 20px;
+    }
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    .profile-link {
+        display: inline-block;
+        margin: 10px 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .profile-link:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock style %}

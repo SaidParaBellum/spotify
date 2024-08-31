@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Мои плейлисты{% endblock title %}
+{% block content %}
+<div class="playlist-container">
+    {% for playlist in playlists %}
+    <div class="playlist-card">
+        <h3>{{ playlist.name }}</h3>
+        <p>Длительность плейлиста: {{ playlist.longetivity }}</p>
+        <p>Количество песен: {{ playlist.songs.count }}</p>
+        <a href="{% url 'playlist_detail' playlist.pk %}" class="view-playlist">Просмотреть</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+{% block style %}
+<style>
+    .playlist-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .playlist-card {
+        width: 250px;
+        padding: 15px;
+        margin: 15px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .view-playlist {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .view-playlist:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock style %}
